@@ -105,6 +105,7 @@ public Data[] execute()
 				
 					outputGraph.addColumn("lat", double.class);
 					outputGraph.addColumn("long", double.class);
+					outputGraph.addColumn("country", String.class);
 					
 					String author_column_string = "Authors";
 					int author_index = 0;
@@ -173,16 +174,20 @@ public Data[] execute()
 							
 							String lat = afdata.substring(0,afdata.indexOf(","));
 							afdata = afdata.substring(afdata.indexOf(",")+2,afdata.length());
-							String longa = afdata;
+							String longa = afdata.substring(0,afdata.indexOf(","));
+							afdata = afdata.substring(afdata.indexOf(",")+2,afdata.length());
+							String country = afdata;
 							
 							outputGraph.getNode(i).setDouble("lat",Double.parseDouble(lat));
 							outputGraph.getNode(i).setDouble("long",Double.parseDouble(longa));
+							outputGraph.getNode(i).setString("country",country.toLowerCase());
 							
 						}
 						catch (Exception ex ){
 							erorcount++;
 							outputGraph.getNode(i).setDouble("lat",Double.parseDouble("0.0"));
 							outputGraph.getNode(i).setDouble("long",Double.parseDouble("0.0"));
+							outputGraph.getNode(i).setString("country","None");
 						}
 
 						
