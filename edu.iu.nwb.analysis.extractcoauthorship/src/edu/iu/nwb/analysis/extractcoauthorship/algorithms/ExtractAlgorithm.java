@@ -149,11 +149,7 @@ public Data[] execute()
 							}while((authorcolumn.indexOf(authorcheck.toLowerCase()) == -1)&&(counter < 3723));
 						}
 						
-						if (counter > 3721){
-							this.logger.log(1, "bad author here"+authorcheck);
-						}
-						
-						
+					
 
 						try{	
 							authorcheck = authorcheck.toLowerCase();
@@ -184,6 +180,7 @@ public Data[] execute()
 							
 						}
 						catch (Exception ex ){
+							this.logger.log(1, "errorfound: "+ex);
 							erorcount++;
 							outputGraph.getNode(i).setDouble("lat",Double.parseDouble("0.0"));
 							outputGraph.getNode(i).setDouble("long",Double.parseDouble("0.0"));
